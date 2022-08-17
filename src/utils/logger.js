@@ -15,4 +15,4 @@ const log = logger({
     timestamp: () => `,"time":"${dayjs().format()}"`,
 });
 
-module.exports = log;
+module.exports = { log };

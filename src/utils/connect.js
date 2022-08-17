@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
 const config = require('config');
-const log = require('./logger');
+const mongoose = require('mongoose');
+
+const { log } = require('./logger');
 
 async function connect() {
     const dbUri = config.get("dbUri");
@@ -14,4 +15,4 @@ async function connect() {
     }
 }
 
-module.exports = connect;
+module.exports = { connect };

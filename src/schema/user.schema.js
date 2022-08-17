@@ -23,5 +23,4 @@ const createUserSchema = object({
 
 const CreateUserInput = lodash.omit(createUserSchema, 'body.passwordConfirmation');
 
-module.exports = CreateUserInput;
-module.exports = createUserSchema;
+module.exports = { createUserSchema, CreateUserInput };

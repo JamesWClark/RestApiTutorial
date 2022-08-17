@@ -1,4 +1,4 @@
-const validate = (schema) => (req, res, next) => {
+const validateResource = (schema) => (req, res, next) => {
     try {
         schema.parse({
             body: req.body,
@@ -11,4 +11,4 @@ const validate = (schema) => (req, res, next) => {
     }
 }
 
-module.exports = validate;
+module.exports = { validateResource };

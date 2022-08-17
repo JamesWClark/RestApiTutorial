@@ -1,6 +1,8 @@
-const log = require('../utils/logger');
-const createUser = require('../service/user.service');
 const lodash = require('lodash');
+
+const { log } = require('../utils/logger');
+const { createUser } = require('../service/user.service');
+
 
 async function createUserHandler(req, res) {
     try {
@@ -12,4 +14,4 @@ async function createUserHandler(req, res) {
     }
 }
 
-module.exports = createUserHandler;
+module.exports = { createUserHandler };
