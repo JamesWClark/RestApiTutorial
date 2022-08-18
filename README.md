@@ -6,6 +6,8 @@ main - current progress
 part1 - bootstrapping  
 part2 - create user  
 part3 - create session  
+part4 - get sessions  
+
 
 
 Requires  
