@@ -1,6 +1,7 @@
+const { requireUser } = require('./middleware/requireUser');
 const { validateResource } = require('./middleware/validateResource');
 const { createUserHandler } = require('./controller/user.controller');
-const { createUserSessionHandler } = require('./controller/session.controller');
+const { createUserSessionHandler, getUserSessionsHandler } = require('./controller/session.controller');
 const { createUserSchema } = require('./schema/user.schema');
 const { createSessionSchema } = require('./schema/session.schema');
 
@@ -11,6 +12,8 @@ function routes(app) {
     app.post('/api/users', validateResource(createUserSchema), createUserHandler);
 
     app.post('/api/sessions', validateResource(createSessionSchema), createUserSessionHandler);
+
+    app.get('/api/sessions', requireUser, getUserSessionsHandler);
 }
 
 module.exports = { routes };

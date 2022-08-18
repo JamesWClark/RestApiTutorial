@@ -6,4 +6,8 @@ async function createSession(userId, userAgent) {
     return session.toJSON();
 }
 
-module.exports = { createSession };
+async function findSessions(query) {
+    return SessionModel.find(query).lean();
+}
+
+module.exports = { createSession, findSessions };
