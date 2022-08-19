@@ -10,4 +10,8 @@ async function findSessions(query) {
     return SessionModel.find(query).lean();
 }
 
-module.exports = { createSession, findSessions };
+async function updateSession(query, update) {
+    return SessionModel.updateOne(query, update);
+}
+
+module.exports = { createSession, findSessions, updateSession };

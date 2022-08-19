@@ -1,7 +1,7 @@
 const config = require('config');
 
 const { validatePassword } = require('../service/user.service');
-const { createSession, findSessions } = require('../service/session.service');
+const { createSession, findSessions, updateSession } = require('../service/session.service');
 const { signJwt } = require('../utils/jwt.utils');
 
 async function createUserSessionHandler(req, res) {
@@ -40,4 +40,15 @@ async function getUserSessionsHandler(req, res) {
     return res.send(sessions);
 }
 
-module.exports = { createUserSessionHandler, getUserSessionsHandler };
+async function deleteSessionHandler(req, res) {
+    const sessionId = res.locals.user.session;
+
+    await updateSession({ _id : sessionId }, { valid: false });
+
+    return res.send({
+        accessToken: null,
+        refreshToken: null
+    });
+}
+
+module.exports = { createUserSessionHandler, deleteSessionHandler, getUserSessionsHandler };
