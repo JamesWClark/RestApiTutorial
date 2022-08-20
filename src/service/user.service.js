@@ -5,7 +5,8 @@ const { UserModel } = require('../models/user.model');
 async function createUser(input) {
     input = lodash.omit(input, ['createdAt', 'updatedAt', 'comparePassword']);
     try {
-        return await UserModel.create(input);
+        const user = await UserModel.create(input); 
+        return lodash.omit(user.toJSON(), 'password');
     } catch (e) {
         throw new Error(e);
     }
@@ -27,4 +28,8 @@ async function createUser(input) {
     return lodash.omit(user.toJSON(), "password");
 }
 
-module.exports = { createUser, validatePassword };
+async function findUser(query) {
+    return UserModel.findOne(query).lean();
+}
+
+module.exports = { createUser, findUser, validatePassword };

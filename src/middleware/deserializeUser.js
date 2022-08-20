@@ -1,8 +1,11 @@
 const lodash = require('lodash');
 const { verifyJwt } = require('../utils/jwt.utils');
+const { reIssueAccessToken } = require('../service/session.service');
 
-function deserializeUser(req, res, next) {
+async function deserializeUser(req, res, next) {
     const accessToken = lodash.get(req, "headers.authorization", "").replace(/^Bearer\s/, "");
+
+    const refreshToken = lodash.get(req, 'headers.x-refresh');
 
     if(!accessToken) {
         return next();
@@ -12,6 +15,20 @@ function deserializeUser(req, res, next) {
 
     if(decoded) {
         res.locals.user = decoded;
+        return next();
+    }
+
+    if(expired && refreshToken) {
+        const newAccessToken = await reIssueAccessToken({ refreshToken });
+
+        if(newAccessToken) {
+            res.setHeader('x-access-token', newAccessToken);
+        }
+
+        const result = verifyJwt(newAccessToken);
+
+        res.locals.user = result.decoded;
+
         return next();
     }
 
