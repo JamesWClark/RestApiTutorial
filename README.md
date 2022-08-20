@@ -13,5 +13,5 @@ part5 - delete sessions
 
 
 Requires  
-mongodb local install (https://www.mongodb.com/try/download/community)
-postman local install (https://www.postman.com/downloads/)
+mongodb local install (https://www.mongodb.com/try/download/community)  
+postman local install (https://www.postman.com/downloads/)  
