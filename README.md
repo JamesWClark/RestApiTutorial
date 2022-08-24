@@ -9,7 +9,7 @@ part3 - create session
 part4 - get sessions  
 part5 - delete sessions  
 part6 - access token from refresh token  
-
+part7 - product crud  
 
 
 Requires  
